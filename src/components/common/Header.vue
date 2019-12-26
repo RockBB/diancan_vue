@@ -3,18 +3,11 @@
     <el-container>
       <el-header height="80px">
         <el-row>
-<!--          <el-col class="logo" :span="3">-->
-<!--&lt;!&ndash;            <img src="@/assets/head-logo.svg" alt="">&ndash;&gt;-->
-<!--          </el-col>-->
           <el-col :span="16">
-            <!-- gutter每一列之间的间隔空隙 -->
+
             <el-row class="nav" :gutter="20">
               <el-col v-for="nav in nav_list" :span="3"><a :class="check(nav.link)?'current':''" :href="nav.link">{{nav.name}}</a></el-col>
-<!--              <el-col :span="3"><router-link to="Courses">免费课</router-link></el-col>-->
-<!--              <el-col :span="3"><router-link to="">轻课</router-link></el-col>-->
-<!--              <el-col :span="3"><router-link to="">学位课</router-link></el-col>-->
-<!--              <el-col :span="3"><router-link to="">题库</router-link></el-col>-->
-<!--              <el-col :span="3"><router-link to="">教育</router-link></el-col>-->
+
             </el-row>
           </el-col>
           <el-col v-if="token" class="login-bar" :span="5">
@@ -26,13 +19,12 @@
               <span>购物车</span>
               </router-link>
             </div>
-            <div class="study">学习中心</div>
+            <div class="study">个人中心</div>
             <div class="member">
               <el-dropdown>
                   <span class="el-dropdown-link"><router-link to=""><img src="@/assets/people.svg" alt=""></router-link></span>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item><router-link to="/my">我的账户</router-link>
-<!--                    <i class="el-icon-arrow-right"></i>-->
                   </el-dropdown-item>
                   <el-dropdown-item><router-link to="/my/order">我的订单</router-link> </el-dropdown-item>
                   <el-dropdown-item>我的优惠卷 </el-dropdown-item>

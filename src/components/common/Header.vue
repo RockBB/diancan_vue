@@ -6,7 +6,7 @@
           <el-col :span="16">
 
             <el-row class="nav" :gutter="20">
-              <el-col v-for="nav in nav_list" :span="3"><a :class="check(nav.link)?'current':''" :href="nav.link">{{nav.name}}</a></el-col>
+              <el-col v-for="(nav, i) in nav_list" :span="3" :key="i"><a :class="check(nav.link)?'current':''" :href="nav.link">{{nav.name}}</a></el-col>
 
             </el-row>
           </el-col>
@@ -14,7 +14,7 @@
             <div class="cart-ico">
               <router-link to="/cart">
 <!--              <b>{{$store.state.cart.count}}</b>-->
-<!--              <b>{{count}}</b>-->
+             <b>{{count}}</b>
               <img src="@/assets/cart.svg" alt="">
               <span>购物车</span>
               </router-link>
@@ -128,12 +128,12 @@
         });
       },
     },
-    // computed: {
-    //    count:function () {
-    //      // console.log(this.$store.state.cart.count);
-    //      return this.$store.state.cart.count
-    //    }
-    // }
+    computed: {
+       count() {
+         // console.log(this.$store.state.cart.count);
+         return this.$store.state.cart.count
+       }
+    }
   }
 </script>
 

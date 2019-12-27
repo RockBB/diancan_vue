@@ -1,16 +1,10 @@
 <template>
   <div class="banner">
-    <el-row>
-      <el-col :span="4">www</el-col>
-      <el-col :span="16">
         <el-carousel trigger="click" height="600px">
-          <el-carousel-item v-for="banner in banner_list">
+          <el-carousel-item v-for="(banner, i) in banner_list" :key="i">
             <a :href="banner.link"><img width="100%" height="100%" :src="banner.image" alt=""></a>
           </el-carousel-item>
         </el-carousel>
-      </el-col>
-      <el-col :span="4"> </el-col>
-    </el-row>
   </div>
 </template>
 
@@ -39,6 +33,11 @@
 /*  width: 100px!important;*/
 /*  height: 100px!important;*/
 /*}*/
+.banner {
+width: 600px; 
+text-align: center;
+ margin: auto
+}
 .el-icon-arrow-left{
   font-size: 35px;
   margin-left: 50px;

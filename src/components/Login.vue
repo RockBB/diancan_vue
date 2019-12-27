@@ -64,7 +64,7 @@ export default {
           sessionStorage.user_id = data.id;
           sessionStorage.user_name = data.username;
         }
-
+        this.$store.state.user.money = data.money;
         // 登录成功以后,跳转会上一个页面
         this.$router.go(-1);
 

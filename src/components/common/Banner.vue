@@ -1,8 +1,8 @@
 <template>
   <div class="banner">
-        <el-carousel trigger="click" height="600px">
+        <el-carousel trigger="click" height="400px" type="card">
           <el-carousel-item v-for="(banner, i) in banner_list" :key="i">
-            <a :href="banner.link"><img width="100%" height="100%" :src="banner.image" alt=""></a>
+            <a :href="banner.link"><img width="" height="" :src="banner.image" alt=""></a>
           </el-carousel-item>
         </el-carousel>
   </div>
@@ -20,7 +20,7 @@
       // 获取轮播图数据
       this.$axios.get(this.$settings.Host+"/banner/").then(response=>{
         this.banner_list = response.data;
-        console.log(response.data);
+        // console.log(response.data);
       }).catch(error=>{
         console.log(error.response);
       });
@@ -34,9 +34,9 @@
 /*  height: 100px!important;*/
 /*}*/
 .banner {
-width: 600px; 
+/*width: 800px;*/
 text-align: center;
- margin: auto
+ margin: 100px auto 0 auto
 }
 .el-icon-arrow-left{
   font-size: 35px;

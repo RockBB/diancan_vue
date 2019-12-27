@@ -19,7 +19,8 @@
               <span>购物车</span>
               </router-link>
             </div>
-            <div class="study">个人中心</div>
+
+            <div class="study">账户金额：{{money}}￥</div>
             <div class="member">
               <el-dropdown>
                   <span class="el-dropdown-link"><router-link to=""><img src="@/assets/people.svg" alt=""></router-link></span>
@@ -67,6 +68,7 @@
       }
     },
     created() {
+
       // 获取导航
       this.$axios.get(this.$settings.Host+"/nav/").then(response=>{
         this.nav_list = response.data;
@@ -74,6 +76,9 @@
       }).catch(error=>{
         console.log(error.response)
       })
+    },
+    mounted(){
+      this.money = this.$store.state.user.money
     },
     methods:{
       check(link){
@@ -129,10 +134,34 @@
       },
     },
     computed: {
-       count() {
-         // console.log(this.$store.state.cart.count);
-         return this.$store.state.cart.count
-       }
+       count: {
+         get: function () {
+           return this.$store.state.cart.count
+          },
+          // setter
+          set: function (newValue) {
+            return this.$store.state.cart.count
+          }
+
+       },
+      money:{
+         get: function () {
+           return this.$store.state.user.money
+    },
+    // setter
+    set: function (newValue) {
+      return   this.$store.state.user.money
+    }
+
+      }
+    },
+    watch:{
+      money(newvalue){
+        this.money = newvalue;
+      },
+      count(newvalue){
+        this.count = newvalue;
+      },
     }
   }
 </script>

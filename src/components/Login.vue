@@ -65,8 +65,16 @@ export default {
           sessionStorage.user_name = data.username;
         }
         this.$store.state.user.money = data.money;
+        console.log('5555555', data)
         // 登录成功以后,跳转会上一个页面
-        this.$router.go(-1);
+        let _this = this;
+        _this.$alert("登录成功!","欢迎光临",{
+          callback(){
+            // 跳转到首页
+            // _this.$router.push("/");
+            _this.$router.go(-1);
+          }
+        });
 
       }).catch(error=>{
         console.log(error.response)

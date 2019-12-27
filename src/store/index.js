@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 
-export const store = new Vuex.Store({
+export default new Vuex.Store({
   // 数据仓库,类似vue里面的data
   state: {
     // 购物车数据
@@ -20,6 +20,11 @@ export const store = new Vuex.Store({
     addcart(state,data){
       // 修改商品课程的总数
       state.cart.count = data.count;
+      // state.cart.course_list = data.course_list;
+    },
+    newmoney(state,data){
+      // 修改商品课程的总数
+      state.user.money = data.money;
       // state.cart.course_list = data.course_list;
     }
   }

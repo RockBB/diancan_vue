@@ -165,8 +165,8 @@
         }).then(response=>{
 
           // 获取购物城中商品总数
-          // this.$store.state.cart.count = response.data.count;
-          // this.$store.commit("addcart",response.data);
+          this.$store.state.cart.count = response.data.count;
+          this.$store.commit("addcart",response.data);
           // 添加购物车成功!
           this.$message(response.data.message,"提示!",{
             duration: 2000, // 单位: 毫秒

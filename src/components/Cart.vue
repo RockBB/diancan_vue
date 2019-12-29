@@ -10,7 +10,7 @@
                             @select="currentSelected" @selection-change="SelectionChange">
 <!--        <el-table ref="selectAllTable" :data="courseData" style="width:100%">-->
           <el-table-column type="selection" label="" width="87"></el-table-column>
-          <el-table-column label="课程" width="540">
+          <el-table-column label="菜品" width="540">
             <template slot-scope="scope">
               <div class="course-box">
                 <img :src="$settings.Host + scope.row.food_img" alt="">
@@ -18,25 +18,26 @@
               </div>
             </template>
           </el-table-column>
-          <el-table-column label="有效期" width="216">
-            <template slot-scope="scope">
-              <el-form ref="form" label-width="60px">
-                <el-form-item>
-<!--                  <template slot-scope="scope">-->
-                  <el-select @change="ChangeExpire(scope.row)"   v-model="scope.row.expire" placeholder="请选择有效期">
-                    <el-option v-for="item in scope.row.expire_list" :key="item.timer" :label="item.title" :value="item.timer"></el-option>
-                  </el-select>
-<!--                  </template>-->
-                </el-form-item>
-              </el-form>
-            </template>
-          </el-table-column>
+<!--          <el-table-column label="" width="216">-->
+<!--            <template slot-scope="scope">-->
+<!--&lt;!&ndash;              <el-form ref="form" label-width="60px">&ndash;&gt;-->
+<!--&lt;!&ndash;                <el-form-item>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                  <template slot-scope="scope">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                  <el-select @change="ChangeExpire(scope.row)"   v-model="scope.row.expire" placeholder="请选择有效期">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <el-option v-for="item in scope.row.expire_list" :key="item.timer" :label="item.title" :value="item.timer"></el-option>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                  </el-select>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                  </template>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                </el-form-item>&ndash;&gt;-->
+<!--&lt;!&ndash;              </el-form>&ndash;&gt;-->
+<!--            </template>-->
+<!--          </el-table-column>-->
           <el-table-column label="单价" width="162">
             <template slot-scope="scope"> ¥{{ scope.row.price.toFixed(2) }}</template>
           </el-table-column>
           <el-table-column label="操作" width="162">
             <template slot-scope="scope">
-              <span ref="CartDel" @click="CartDel(scope.row,scope.row.name)">删除</span>
+<!--              <span ref="CartDel" @click="CartDel(scope.row,scope.row.name)">删除</span>-->
+              <el-button ref="CartDel" type="danger" size="mini" class="el-icon-delete" @click="CartDel(scope.row,scope.row.name)">删除</el-button>
             </template>
           </el-table-column>
 
@@ -47,7 +48,7 @@
 <!--          <span @click="SelectAll(courseData)"><el-checkbox checked="checked">全选</el-checkbox></span>-->
           <span @click="SelectAll(courseData)"><el-checkbox :checked="selection?'checked':''">全选</el-checkbox></span>
         </div>
-        <div class="delete-any"><el-button size="mini" class="el-icon-delete">删除</el-button></div>
+<!--        <div class="delete-any"><el-button size="mini" class="el-icon-delete">删除</el-button></div>-->
         <div class="cart-bottom-right">
           <span class="total">总计：¥<span>{{total_price}}</span></span>
 <!--          <span class="go-pay" @click="gotopay">去结算</span>-->
@@ -174,18 +175,19 @@
       },
       CartDel:function(course,course_name){
         console.log(course, course_name);
-        this.$confirm(`您确定要从购物车删除<<${course_name}>>这个课程么?`,"提示!").then(()=>{
-          let course_id = course.id;
+        this.$confirm(`您确定要从购物车删除<<${course_name}>>这个菜品么?`,"提示!").then(()=>{
+          let food_id = course.id;
           // 发送请求
           this.$axios.delete(this.$settings.Host+"/carts/foods/",{
             params:{
-              course_id:course_id,
+              food_id:food_id,
             },
             headers:{
               // 注意下方的空格!!!
               "Authorization":"jwt " + this.token
             },
           }).then(response=>{
+
             let index = this.courseData.indexOf(course);
             this.courseData.splice(index,1);
             console.log(this.courseData);

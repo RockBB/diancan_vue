@@ -78,7 +78,8 @@
       })
     },
     mounted(){
-      this.money = this.$store.state.user.money
+      this.money = this.$store.state.user.money;
+      this.count = this.$store.state.cart.count;
     },
     methods:{
       check(link){
@@ -140,6 +141,7 @@
           },
           // setter
           set: function (newValue) {
+
             return this.$store.state.cart.count
           }
 
@@ -147,20 +149,20 @@
       money:{
          get: function () {
            return this.$store.state.user.money
-    },
-    // setter
-    set: function (newValue) {
-      return   this.$store.state.user.money
-    }
+        },
+        // setter
+        set: function (newValue) {
+          return this.$store.state.user.money
+        }
 
       }
     },
     watch:{
-      money(newvalue){
-        this.money = newvalue;
+      money(newvalue, oldvalue){
+        this.money = newvalue ? newvalue : oldvalue;
       },
-      count(newvalue){
-        this.count = newvalue;
+      count(newvalue, oldvalue){
+        this.count = newvalue ? newvalue : oldvalue;
       },
     }
   }

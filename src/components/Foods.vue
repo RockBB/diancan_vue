@@ -26,7 +26,7 @@
           <div class="course-link" v-for="course in course_list" >
             <li class="course-item">
               <div class="course-cover">
-                <img :src="course.food_img" alt="">
+                <img :src="course.food_img" style="height: 220px; width: 350px">
               </div>
               <div class="course-info">
                 <div class="course-title">
@@ -48,7 +48,8 @@
       <div class="pagination">
 
         <el-pagination @current-change="handleCurrentChange" :current-page="query_params.current_page"
-          background layout="prev, pager, next" :page-size="course_page_size" :total="course_count">
+          background layout="prev, pager, next" :total="course_count">
+<!--          background layout="prev, pager, next" :page-size="course_page_size" :total="course_count">-->
         </el-pagination>
       </div>
     </div>

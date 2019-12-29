@@ -2,7 +2,7 @@
   <div class="banner">
         <el-carousel trigger="click" height="400px" type="card">
           <el-carousel-item v-for="(banner, i) in banner_list" :key="i">
-            <a :href="banner.link"><img width="" height="" :src="banner.image" alt=""></a>
+            <a :href="banner.link"><img width="400px" height="" :src="banner.image" alt=""></a>
           </el-carousel-item>
         </el-carousel>
   </div>
@@ -34,7 +34,7 @@
 /*  height: 100px!important;*/
 /*}*/
 .banner {
-/*width: 800px;*/
+width: 800px;
 text-align: center;
  margin: 100px auto 0 auto
 }

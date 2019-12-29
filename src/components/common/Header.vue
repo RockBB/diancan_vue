@@ -78,8 +78,8 @@
       })
     },
     mounted(){
-      this.money = this.$store.state.user.money;
-      this.count = this.$store.state.cart.count;
+      this.getCartCount();
+      this.getMoney();
     },
     methods:{
       check(link){
@@ -103,14 +103,7 @@
         });
       },
       logout(){
-        // console.log(this.is_login);
 
-        // localStorage.clear();
-        // sessionStorage.clear();
-
-        // this.$alert('退出登录成功!', '路飞学城', {
-        //   confirmButtonText: '确定'
-        // });
         let _this = this;
         this.$confirm('是否退出登录?', '警告', {
           confirmButtonText: '确定',
@@ -132,6 +125,29 @@
           //   message: '取消退出登录'
           // });
         });
+      },
+      getCartCount(){
+        // 获取购物车商品数据
+        this.$axios.get(this.$settings.Host+"/carts/foods/",{
+          headers:{
+            // 注意下方的空格!!!
+            "Authorization":"jwt " + this.token
+          }
+        }).then(response=>{
+          // 更新在vuex里面的数据
+          this.$store.commit("addcart",response.data.length);
+        })
+      },
+      getMoney(){
+        this.$axios.get(this.$settings.Host+"/users/money/",{
+              headers:{
+                // 注意:jwt后面必须有且只有一个空格!!!!
+                "Authorization":"jwt " + this.token
+              }
+          }).then(response=>{
+               this.$store.commit("newmoney",response.data.money);
+
+          })
       },
     },
     computed: {
@@ -157,14 +173,14 @@
 
       }
     },
-    watch:{
-      money(newvalue, oldvalue){
-        this.money = newvalue ? newvalue : oldvalue;
-      },
-      count(newvalue, oldvalue){
-        this.count = newvalue ? newvalue : oldvalue;
-      },
-    }
+    // watch:{
+    //   money(newvalue, oldvalue){
+    //     this.money = newvalue ? newvalue : oldvalue;
+    //   },
+    //   count(newvalue, oldvalue){
+    //     this.count = newvalue ? newvalue : oldvalue;
+    //   },
+    // }
   }
 </script>
 

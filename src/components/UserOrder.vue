@@ -19,8 +19,8 @@
           <div class="user-data">
             <ul class="nav">
               <li class="order-info">订单</li>
-              <li class="course-expire">有效期</li>
-              <li class="course-price">课程价格</li>
+<!--              <li class="course-expire">有效期</li>-->
+              <li class="course-price">菜品价格</li>
               <li class="real-price">实付金额</li>
               <li class="order-status">交易状态</li>
               <li class="order-do">交易操作</li>

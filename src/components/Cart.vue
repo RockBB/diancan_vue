@@ -14,23 +14,11 @@
             <template slot-scope="scope">
               <div class="course-box">
                 <img :src="$settings.Host + scope.row.food_img" alt="">
-                <router-link :to="'/detail?id='+scope.row.id">{{scope.row.name}}</router-link>
+                <span>{{scope.row.name}}</span>
               </div>
             </template>
           </el-table-column>
-<!--          <el-table-column label="" width="216">-->
-<!--            <template slot-scope="scope">-->
-<!--&lt;!&ndash;              <el-form ref="form" label-width="60px">&ndash;&gt;-->
-<!--&lt;!&ndash;                <el-form-item>&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                  <template slot-scope="scope">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                  <el-select @change="ChangeExpire(scope.row)"   v-model="scope.row.expire" placeholder="请选择有效期">&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                    <el-option v-for="item in scope.row.expire_list" :key="item.timer" :label="item.title" :value="item.timer"></el-option>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                  </el-select>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;                  </template>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                </el-form-item>&ndash;&gt;-->
-<!--&lt;!&ndash;              </el-form>&ndash;&gt;-->
-<!--            </template>-->
-<!--          </el-table-column>-->
+
           <el-table-column label="单价" width="162">
             <template slot-scope="scope"> ¥{{ scope.row.price.toFixed(2) }}</template>
           </el-table-column>
@@ -44,14 +32,9 @@
         </el-table>
       </div>
       <div class="cart-bottom">
-        <div class="select-all">
-<!--          <span @click="SelectAll(courseData)"><el-checkbox checked="checked">全选</el-checkbox></span>-->
-          <span @click="SelectAll(courseData)"><el-checkbox :checked="selection?'checked':''">全选</el-checkbox></span>
-        </div>
-<!--        <div class="delete-any"><el-button size="mini" class="el-icon-delete">删除</el-button></div>-->
+
         <div class="cart-bottom-right">
           <span class="total">总计：¥<span>{{total_price}}</span></span>
-<!--          <span class="go-pay" @click="gotopay">去结算</span>-->
           <span  v-if="courseData.length">
             <span class="go-pay" @click="gotopay">去结算</span>
           </span>
@@ -121,10 +104,6 @@
 
           // 调整因为ajax数据请求导致勾选状态人没有出现的原因,使用定时器进行延时调用
           setTimeout(()=>{
-            let expire_data = [];
-            this.expire_list.forEach(row=>{
-              expire_data[row.id] = row.title;
-            });
 
             // row 就是字典数据[json]
             this.courseData.forEach(row => {
@@ -133,14 +112,12 @@
                 this.$refs.multipleTable.toggleRowSelection(row);
               }
 
-              // 调整有效期选项中数值变成文本内容
-              row.expire = expire_data[row.expire];
             });
           },0)
 
         }).catch(error=>{
           let status = error.response.status;
-          if( status == 401 ){
+          if( status === 401 ){
             this.token = null;
             sessionStorage.removeItem("token");
             localStorage.removeItem("token");
@@ -190,8 +167,9 @@
 
             let index = this.courseData.indexOf(course);
             this.courseData.splice(index,1);
-            console.log(this.courseData);
+            // console.log(this.courseData);
             this.$message("删除成功!");
+            this.getCartCount();
 
           }).catch(error=>{
             console.log(error.response);
@@ -232,27 +210,17 @@
         })
       },
       // 更新课程的有效期
-      ChangeExpire:function(course){
-        // 获取课程ID和有效期
-        let course_id = course.id;
-        let expire    = course.expire;
-
-        // 发送patch请求更新有效期
-        this.$axios.patch(this.$settings.Host+"/carts/foods/",{
-          course_id,
-          expire,  // 这里是简写,相当于 expire:expire,
-        },{
+      getCartCount(){
+        // 获取购物车商品数据
+        this.$axios.get(this.$settings.Host+"/carts/foods/",{
           headers:{
             // 注意下方的空格!!!
             "Authorization":"jwt " + this.token
-          },
+          }
         }).then(response=>{
-          // 更新购买的商品课程的价格
-          course.price = response.data.price;
-          // 重新计算购物车中的商品总价
-          this.getTotalPrice();
-          this.$message(response.data.message,"提示");
-        });
+          // 更新在vuex里面的数据
+          this.$store.commit("addcart",response.data.length);
+        })
       },
       // 获取勾选过的商品课程列表
       SelectionChange(data){
@@ -290,8 +258,9 @@
 <style scoped>
   .main {
     width: 1200px;
-    margin: 0 auto;
+    margin: 80px auto;
     overflow: hidden; /* 解决body元素和标题之间的上下外边距的塌陷问题 */
+
   }
 
   .cart-title h3 {
@@ -314,6 +283,7 @@
   }
 
   .cart-bottom {
+    width: 900px;
     overflow: hidden;
     height: 80px;
     background: #F7F7F7;

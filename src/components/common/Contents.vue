@@ -3,24 +3,24 @@
     <el-container>
       <el-row  type="flex" class="row-bg" justify="space-between">
         <el-col :span="5">
-<!--          <img src="/static/content/c1.png" alt="">-->
-          <h3>宫保鸡丁</h3>
+          <img src="/static/img/m1.jpeg" alt="">
+          <h3>火锅</h3>
           <p>
-            宫保鸡丁
+            火锅
           </p>
         </el-col>
         <el-col :span="5">
-<!--          <img src="/static/content/c2.png" alt="">-->
-          <h3>大盘鸡</h3>
+          <img src="/static/img/m2.jpeg" alt="">
+          <h3>火锅</h3>
           <p>
-            大盘鸡
+            火锅
           </p>
         </el-col>
         <el-col :span="5">
-<!--          <img src="/static/content/c3.png" alt="">-->
-          <h3>回锅肉</h3>
+          <img src="/static/img/m1.jpeg" alt="">
+          <h3>火锅</h3>
           <p>
-            回锅肉
+            火锅
           </p>
         </el-col>
       </el-row>
@@ -35,9 +35,9 @@
     data(){
       return {
         con_list:[
-          "/static/content/c1.png",
-          "/static/content/c2.png",
-          "/static/content/c3.png",
+          "/static/img/m1.jpeg",
+          "/static/img/m2.png",
+          "/static/img/m3.png",
         ],
       }
     },

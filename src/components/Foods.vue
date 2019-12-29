@@ -16,39 +16,48 @@
           <li class="item" :class="query_params.ordering==='price'?'current price':(query_params.ordering==='-price'?'current price2':'')" @click="select_ordering('price')">价格</li>
         <li class="course-length"></li>
       </ul>
-      <div class="top">
 
-      </div>
       <!-- 课程列表 -->
 
       <div class="list">
-        <ul>
-          <div class="course-link" v-for="course in course_list" >
-            <li class="course-item">
-              <div class="course-cover">
-                <img :src="course.food_img" style="height: 220px; width: 350px">
-              </div>
-              <div class="course-info">
-                <div class="course-title">
+        <el-row :gutter="40" >
+        <el-col :span="6" v-for="course in course_list"><div class="grid-content bg-purple">
+          <div class="course-title">
                   <h3>{{course.name}}</h3>
-
-                </div>
-
-
-                <div class="buy-info">
-                  <span class="present-price">￥{{course.price}}元</span>
-                  <div class="add-cart" @click="cartAddHander(course.id)"><img src="@/assets/cart1.svg" alt="">加入购物车</div>
-                </div>
-              </div>
-            </li>
           </div>
-        </ul>
+          <img :src="course.food_img" style="height: 200px; width: 255px;margin: 20px 0;">
+          <div class=".buy-inf">
+            <span class="present-price">￥{{course.price}}元</span>
+            <span class="add-cart" @click="cartAddHander(course.id)"><img src="@/assets/cart1.svg" alt="">加入购物车</span>
+          </div>
+        </div></el-col>
+      </el-row>
+
+<!--        <ul>-->
+<!--          <div class="course-link" v-for="course in course_list" >-->
+<!--            <li class="course-item">-->
+
+<!--              <div class="course-info">-->
+<!--                <div class="course-title" >-->
+<!--                  <h3>{{course.name}}</h3>-->
+<!--                </div>-->
+<!--              <div class="course-cover" >-->
+<!--                <img :src="course.food_img" style="height: 220px; width: 350px">-->
+<!--              </div>-->
+<!--                <div class="buy-info">-->
+<!--                  <span class="present-price">￥{{course.price}}元</span>-->
+<!--                  <div class="add-cart" @click="cartAddHander(course.id)"><img src="@/assets/cart1.svg" alt="">加入购物车</div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </li>-->
+<!--          </div>-->
+<!--        </ul>-->
       </div>
       <!--      分页-->
       <div class="pagination">
 
         <el-pagination @current-change="handleCurrentChange" :current-page="query_params.current_page"
-          background layout="prev, pager, next" :total="course_count">
+          background layout="prev, pager, next" page-size="12" :total="course_count">
 <!--          background layout="prev, pager, next" :page-size="course_page_size" :total="course_count">-->
         </el-pagination>
       </div>
@@ -166,8 +175,7 @@
         }).then(response=>{
 
           // 获取购物城中商品总数
-          this.$store.state.cart.count = response.data.count;
-          this.$store.commit("addcart",response.data);
+          this.$store.commit("addcart",response.data.count);
           // 添加购物车成功!
           this.$message(response.data.message,"提示!",{
             duration: 2000, // 单位: 毫秒
@@ -392,9 +400,21 @@
     border-radius: 10px 0 10px 0;
     line-height: 36px;
   }
-
+  .buy-inf .discount {
+    padding: 0px 10px;
+    font-size: 16px;
+    color: #fff;
+    display: inline-block;
+    height: 36px;
+    text-align: center;
+    margin-right: 8px;
+    background: #fa6240;
+    border: 1px solid #fa6240;
+    border-radius: 10px 0 10px 0;
+    line-height: 36px;
+  }
   .present-price {
-    font-size: 24px;
+    font-size: 18px;
     color: #fa6240;
   }
 
@@ -434,7 +454,7 @@
   color: #ffc210;
   text-align: center;
   cursor: pointer;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
 }
 .add-cart img{
   width: 20px;
@@ -442,4 +462,30 @@
   margin-right: 7px;
   vertical-align: middle;
 }
+  .el-row {
+    margin-bottom: 20px;
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+  .el-col {
+    border-radius: 4px;
+  }
+  /*.bg-purple-dark {*/
+  /*  background: #99a9bf;*/
+  /*}*/
+  /*.bg-purple {*/
+  /*  background: #d3dce6;*/
+  /*}*/
+  /*.bg-purple-light {*/
+  /*  background: #e5e9f2;*/
+  /*}*/
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+  .row-bg {
+    padding: 10px 0;
+    /*background-color: #f9fafc;*/
+  }
 </style>

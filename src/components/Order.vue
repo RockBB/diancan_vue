@@ -159,8 +159,7 @@
                 "Authorization":"jwt " + token
               }
           }).then(response=>{
-               // this.$store.state.user.money = response.data.money;
-               this.$store.commit("newmoney",response.data);
+               this.$store.commit("newmoney",response.data.money);
                let _this = this;
                this.$confirm("是否跳转到首页",'提示').then(() => {
                  _this.$router.push("/home/");

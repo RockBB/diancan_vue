@@ -19,12 +19,12 @@ export default new Vuex.Store({
     // data是调用方法,传递的购物车相关的参数
     addcart(state,data){
       // 修改商品课程的总数
-      state.cart.count = data.count;
+      state.cart.count = data;
       // state.cart.course_list = data.course_list;
     },
     newmoney(state,data){
       // 修改商品课程的总数
-      state.user.money = data.money;
+      state.user.money = data;
       // state.cart.course_list = data.course_list;
     }
   }

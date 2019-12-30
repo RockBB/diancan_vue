@@ -4,23 +4,23 @@
       <el-row  type="flex" class="row-bg" justify="space-between">
         <el-col :span="5">
           <img src="/static/img/m1.jpeg" alt="">
-          <h3>火锅</h3>
+          <h3>Huo Guo</h3>
           <p>
-            火锅
+            Huo Guo
           </p>
         </el-col>
         <el-col :span="5">
           <img src="/static/img/m2.jpeg" alt="">
-          <h3>火锅</h3>
+          <h3>Huo Guo</h3>
           <p>
-            火锅
+            Huo Guo
           </p>
         </el-col>
         <el-col :span="5">
           <img src="/static/img/m1.jpeg" alt="">
-          <h3>火锅</h3>
+          <h3>Huo Guo</h3>
           <p>
-            火锅
+            Huo Guo
           </p>
         </el-col>
       </el-row>

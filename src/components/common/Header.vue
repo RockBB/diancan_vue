@@ -16,20 +16,21 @@
 <!--              <b>{{$store.state.cart.count}}</b>-->
              <b>{{count}}</b>
               <img src="@/assets/cart.svg" alt="">
-              <span>购物车</span>
+              <span>Shopping Cart</span>
               </router-link>
             </div>
 
-            <div class="study">账户金额：{{money}}￥</div>
+            <div class="study">Account Money：{{money}}￥</div>
             <div class="member">
               <el-dropdown>
                   <span class="el-dropdown-link"><router-link to=""><img src="@/assets/people.svg" alt=""></router-link></span>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item><router-link to="/my">我的账户</router-link>
+<!--                  我的账户-->
+                  <el-dropdown-item><router-link to="/my">My Account</router-link>
                   </el-dropdown-item>
-                  <el-dropdown-item><router-link to="/my/order">我的订单</router-link> </el-dropdown-item>
-                  <el-dropdown-item>我的优惠卷 </el-dropdown-item>
-                  <el-dropdown-item><span  @click="logout()">退出登录</span> </el-dropdown-item>
+                  <el-dropdown-item><router-link to="/my/order">My Orders</router-link> </el-dropdown-item>   <!-- 我的订单-->
+                  <el-dropdown-item>My Coupon </el-dropdown-item>   <!-- 我的优惠卷-->
+                  <el-dropdown-item><span  @click="logout()">Login Out</span> </el-dropdown-item>  <!-- 退出登录-->
                 </el-dropdown-menu>
               </el-dropdown>
             </div>
@@ -37,13 +38,13 @@
           <el-col v-else class="login-bar" :span="5">
             <div class="cart-ico">
               <img src="@/assets/cart1.svg" alt="">
-              <router-link to="/login"><span>购物车</span></router-link>
+              <router-link to="/login"><span>Shopping Cart</span></router-link>
             </div>
             <div>
               <span class="register">
-                  <router-link to="/login">登录</router-link>
+                  <router-link to="/login">Login</router-link>
                   &nbsp;&nbsp;|&nbsp;&nbsp;
-                  <router-link to="/register">注册</router-link>
+                  <router-link to="/register">Register</router-link>
                 </span>
             </div>
           </el-col>

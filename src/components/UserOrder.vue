@@ -7,35 +7,35 @@
               <div class="profile-info">
                   <div class="avatar"><img class="newImg" width="100%" alt="" src="/static/img/logo2.png"></div>
                   <span class="user-name">{{user_info.username}}</span>
-                  <span class="user-job">深圳市 | 程序员</span>
+                  <span class="user-job">BeiJing | Programmer</span>
               </div>
               <ul class="my-item">
-                  <li>我的账户</li>
-                  <li class="active">我的订单</li>
-                  <li>个人资料</li>
-                  <li>账号安全</li>
+                  <li>My Account</li>
+                  <li class="active">My Order</li>
+                  <li>Personal Data</li>
+                  <li>Account Security</li>
               </ul>
             </div>
           <div class="user-data">
             <ul class="nav">
-              <li class="order-info">订单</li>
+              <li class="order-info">Oredr</li>
 <!--              <li class="course-expire">有效期</li>-->
-              <li class="course-price">菜品价格</li>
-              <li class="real-price">实付金额</li>
-              <li class="order-status">交易状态</li>
-              <li class="order-do">交易操作</li>
+              <li class="course-price">Food Price</li>
+              <li class="real-price">Actual amount paid</li>
+              <li class="order-status">Trading status</li>
+              <li class="order-do">Transaction operation</li>
             </ul>
-            <div class="my-order-item" v-for="order in user_info.user_orders">
+            <div class="my-order-item" v-for="(order,i) in user_info.user_orders" :key="i+'o'">
                 <div class="user-data-header">
                   <div class="order-time">
-                    下单时间: {{new Date(order.create_time).toLocaleString()}}
-                    <span style="padding-left: 20px;" v-if="order.pay_time">付款时间: {{new Date(order.pay_time).toLocaleString()}}</span>
+                    Create time: {{new Date(order.create_time).toLocaleString()}}
+                    <span style="padding-left: 20px;" v-if="order.pay_time">Pay time: {{new Date(order.pay_time).toLocaleString()}}</span>
                   </div>
-                  <span class="order-num">订单号：
+                  <span class="order-num">Order Number：
                       <span class="my-older-number">{{order.order_number}}</span>
                   </span>
                 </div>
-              <ul class="nav user-data-list" v-for="course in order.order_foods">
+              <ul class="nav user-data-list" v-for="(course, i) in order.order_foods" :key="i+'c'">
                 <li class="order-info">
                     <img :src="$settings.Host+course.food_img" alt="">
                     <div class="order-info-title">
@@ -49,7 +49,7 @@
                 <li class="order-status">{{order.order_status_text}}</li>
                 <li class="order-do">
 <!--                  <router-link v-if="order.order_status==1" :to="'/detail?id='+course.food" class="btn btn2">去学习</router-link>-->
-                  <router-link v-if="order.order_status==0" :to="'/orders/'+order.order_number" class="btn btn2">去付款</router-link>
+                  <router-link v-if="order.order_status==0" :to="'/orders/'+order.order_number" class="btn btn2">Go Pay</router-link>
                 </li>
               </ul>
 
@@ -75,7 +75,7 @@
         let token = localStorage.token || sessionStorage.token;
         let user_id = localStorage.user_id || sessionStorage.user_id;
         if(!token){
-          this.$alert("对不起,您尚未登录!请登录!","警告",{
+          this.$alert("Sorry, you haven't signed in yet! Please sign in",'Tips',{
             callback(){
               _this.$router.push("/login");
             }

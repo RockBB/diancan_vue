@@ -4,16 +4,17 @@
     <div class="main">
       <!-- 筛选功能 -->
       <ul class="condition condition1">
-        <li class="cate-condition">食物分类:</li>
+        <li class="cate-condition">Food Category:</li>
         <li class="item" :class="query_params.course_category===0?'current':''" @click="query_params.course_category=0">全部</li>
-        <li :class="query_params.course_category===catetory.id?'current':''" @click="query_params.course_category=catetory.id" v-for="catetory in catetory_list" :data-key="catetory.id" class="item">{{catetory.name}}</li>
+        <li :class="query_params.course_category===catetory.id?'current':''"
+         @click="query_params.course_category=catetory.id" v-for="(catetory, i) in catetory_list" :data-key="catetory.id" :key="i+'c'" class="item">{{catetory.name}}</li>
 
       </ul>
       <ul class="condition condition2">
-        <li class="cate-condition">筛&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;选:</li>
-          <li class="item" :class="(query_params.ordering==='-id' || query_params.ordering==='id')?'current':''" @click="select_ordering('id')">默认</li>
+        <li class="cate-condition">Filter:</li>
+          <li class="item" :class="(query_params.ordering==='-id' || query_params.ordering==='id')?'current':''" @click="select_ordering('id')">Default</li>
 <!--          <li class="item" :class="(query_params.ordering==='-students' || query_params.ordering==='students')?'current':''" @click="select_ordering('students')">人气</li>-->
-          <li class="item" :class="query_params.ordering==='price'?'current price':(query_params.ordering==='-price'?'current price2':'')" @click="select_ordering('price')">价格</li>
+          <li class="item" :class="query_params.ordering==='price'?'current price':(query_params.ordering==='-price'?'current price2':'')" @click="select_ordering('price')">Price</li>
         <li class="course-length"></li>
       </ul>
 
@@ -21,14 +22,14 @@
 
       <div class="list">
         <el-row :gutter="40" >
-        <el-col :span="6" v-for="course in course_list"><div class="grid-content bg-purple">
+        <el-col :span="6" v-for="(course,i) in course_list" :key="i+'f'"><div class="grid-content bg-purple">
           <div class="course-title">
                   <h3>{{course.name}}</h3>
           </div>
           <img :src="course.food_img" style="height: 200px; width: 255px;margin: 20px 0;">
           <div class=".buy-inf">
-            <span class="present-price">￥{{course.price}}元</span>
-            <span class="add-cart" @click="cartAddHander(course.id)"><img src="@/assets/cart1.svg" alt="">加入购物车</span>
+            <span class="present-price">{{course.price}}$</span>
+            <span class="add-cart" @click="cartAddHander(course.id)"><img src="@/assets/cart1.svg" alt="">Add to cart</span>
           </div>
         </div></el-col>
       </el-row>
@@ -159,7 +160,7 @@
       cartAddHander(id){
         // 1. 判断用户是否已经登录了.
         if(!this.token){
-          this.$confirm("对不起,您尚未登录!请登录",'提示').then(() => {
+          this.$confirm("Sorry, you haven't signed in yet! Please sign in",'Tips').then(() => {
             this.$router.push("/login");
           });
         }
@@ -177,7 +178,7 @@
           // 获取购物城中商品总数
           this.$store.commit("addcart",response.data.count);
           // 添加购物车成功!
-          this.$message(response.data.message,"提示!",{
+          this.$message(response.data.message,"Tips",{
             duration: 2000, // 单位: 毫秒
           });
 

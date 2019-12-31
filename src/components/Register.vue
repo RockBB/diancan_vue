@@ -2,18 +2,18 @@
 	<div class="box">
 		<div class="register">
 			<div class="register_box">
-        <div class="register-title">注册会员</div>
+        <div class="register-title">Registered member</div>
 				<div class="inp">
-					<input v-model = "mobile" type="text" placeholder="手机号码" class="user">
-					<input v-model = "password" type="password" placeholder="登录密码" class="user">
-					<input v-model = "password2" type="password" placeholder="确认密码" class="user">
+					<input v-model = "mobile" type="text" placeholder="Phone number" class="user">
+					<input v-model = "password" type="password" placeholder="password" class="user">
+					<input v-model = "password2" type="password" placeholder="password" class="user">
 <!--					<div class="sms-box">-->
 <!--            <input v-model = "sms" type="text" placeholder="输入验证码" class="user">-->
 <!--            <div class="sms-btn" @click="">{{sms_text}}</div>-->
 <!--          </div>-->
 
-					<button class="register_btn" @click="registerHander">注册</button>
-					<p class="go_login" >已有账号 <router-link to="/login">直接登录</router-link></p>
+					<button class="register_btn" @click="registerHander">Register</button>
+					<p class="go_login" >Existing accounts <router-link to="/login">Login</router-link></p>
 				</div>
 			</div>
 		</div>
@@ -78,19 +78,19 @@ export default {
     registerHander(){
       // 验证手机号码
       if( !/^\d{11}$/.test(this.mobile) ){
-        this.$alert('手机号码格式有误!', '警告');
+        this.$alert('Wrong format of mobile number!', 'Warn');
         return false;
       }
 
       // 密码长度
       if( !/^.{6,16}$/.test(this.password) ){
-        this.$alert('密码长度必须在6-16位字符之间!', '警告');
+        this.$alert('Password length must be between 6-16 characters!', 'Warn');
         return false;
       }
 
       // 密码和确认密码
       if( this.password !== this.password2 ){
-        this.$alert('确认密码必须和密码保持一致!', '警告');
+        this.$alert('Confirm password must be consistent with password!', 'Warn');
         return false;
       }
 
@@ -102,7 +102,7 @@ export default {
 
       }).then(response=>{
         let _this = this;
-        _this.$alert("注册成功!","点餐",{
+        _this.$alert("Register successful!","Order",{
           callback(){
             let data = response.data;
             console.log(data);

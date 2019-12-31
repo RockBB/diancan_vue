@@ -30,7 +30,7 @@
                   </el-dropdown-item>
                   <el-dropdown-item><router-link to="/my/order">My Orders</router-link> </el-dropdown-item>   <!-- 我的订单-->
                   <el-dropdown-item>My Coupon </el-dropdown-item>   <!-- 我的优惠卷-->
-                  <el-dropdown-item><span  @click="logout()">Login Out</span> </el-dropdown-item>  <!-- 退出登录-->
+                  <el-dropdown-item><span  @click="logout()">Logout</span> </el-dropdown-item>  <!-- 退出登录-->
                 </el-dropdown-menu>
               </el-dropdown>
             </div>
@@ -87,28 +87,28 @@
           return link===window.location.pathname;
       },
       open() {
-        this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
+        this.$confirm('This operation will permanently delete this file. Do you want to continue?', 'Tips', {
+          confirmButtonText: 'Ok',
+          cancelButtonText: 'Cancle',
           type: 'warning'
         }).then(() => {
           this.$message({
             type: 'success',
-            message: '删除成功!'
+            message: 'Delete successful!'
           });
         }).catch(() => {
           this.$message({
             type: 'info',
-            message: '已取消删除'
+            message: 'Delete cancelled'
           });
         });
       },
       logout(){
 
         let _this = this;
-        this.$confirm('是否退出登录?', '警告', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
+        this.$confirm('Logout?', 'warn', {
+          confirmButtonText: 'Ok',
+          cancelButtonText: 'Cancle',
           type: 'warning'
         }).then(() => {
           localStorage.clear();

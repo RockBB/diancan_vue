@@ -3,14 +3,14 @@
     <Header/>
     <div class="main">
       <div class="cart-title">
-        <h3>我的购物车 <span> </span></h3>
+        <h3>My shopping cart <span> </span></h3> <!-- 我的购物车 -->
       </div>
       <div class="cart-info">
                 <el-table ref="multipleTable" :data="courseData" style="width:100%"
                             @select="currentSelected" @selection-change="SelectionChange">
 <!--        <el-table ref="selectAllTable" :data="courseData" style="width:100%">-->
           <el-table-column type="selection" label="" width="87"></el-table-column>
-          <el-table-column label="菜品" width="540">
+          <el-table-column label="Foods" width="540"> <!-- 菜品 -->
             <template slot-scope="scope">
               <div class="course-box">
                 <img :src="$settings.Host + scope.row.food_img" alt="">
@@ -19,13 +19,13 @@
             </template>
           </el-table-column>
 
-          <el-table-column label="单价" width="162">
+          <el-table-column label="Price" width="162">  <!-- 单价 -->
             <template slot-scope="scope"> ¥{{ scope.row.price.toFixed(2) }}</template>
           </el-table-column>
-          <el-table-column label="操作" width="162">
+          <el-table-column label=" operation" width="162">  <!-- 操作 -->
             <template slot-scope="scope">
 <!--              <span ref="CartDel" @click="CartDel(scope.row,scope.row.name)">删除</span>-->
-              <el-button ref="CartDel" type="danger" size="mini" class="el-icon-delete" @click="CartDel(scope.row,scope.row.name)">删除</el-button>
+              <el-button ref="CartDel" type="danger" size="mini" class="el-icon-delete" @click="CartDel(scope.row,scope.row.name)">Delete</el-button>
             </template>
           </el-table-column>
 
@@ -34,12 +34,12 @@
       <div class="cart-bottom">
 
         <div class="cart-bottom-right">
-          <span class="total">总计：¥<span>{{total_price}}</span></span>
+          <span class="total">total：$<span>{{total_price}}</span></span>
           <span  v-if="courseData.length">
-            <span class="go-pay" @click="gotopay">去结算</span>
+            <span class="go-pay" @click="gotopay">go pay</span>
           </span>
           <span v-else>
-            <button type="button" disabled class="go-pay">去结算</button>
+            <button type="button" disabled class="go-pay">go pay</button>
           </span>
         </div>
       </div>
@@ -84,7 +84,7 @@
       // 判断是否登录
       this.token = sessionStorage.token || localStorage.token;
       if( !this.token ){
-        this.$confirm("对不起,您尚未登录!请登录",'提示').then(() => {
+        this.$confirm("Sorry, you haven't signed in yet! Please sign in",'Tips').then(() => {
           this.$router.push("/login");
         }).catch(()=>{
           this.$router.go(-1);
@@ -122,7 +122,7 @@
             sessionStorage.removeItem("token");
             localStorage.removeItem("token");
             let _this = this;
-            this.$alert("您尚未登录或登录超时!请重新登录","警告",{
+            this.$alert("You have not signed in or the sign in timeout! Please sign in again","Warn",{
               callback(){
                 _this.$router.push("/login");
               }
@@ -152,7 +152,7 @@
       },
       CartDel:function(course,course_name){
         console.log(course, course_name);
-        this.$confirm(`您确定要从购物车删除<<${course_name}>>这个菜品么?`,"提示!").then(()=>{
+        this.$confirm(`Are you sure delete this ${course_name}`,"Tips").then(()=>{
           let food_id = course.id;
           // 发送请求
           this.$axios.delete(this.$settings.Host+"/carts/foods/",{
@@ -168,7 +168,7 @@
             let index = this.courseData.indexOf(course);
             this.courseData.splice(index,1);
             // console.log(this.courseData);
-            this.$message("删除成功!");
+            this.$message("Delete successful!");
             this.getCartCount();
 
           }).catch(error=>{
@@ -203,7 +203,7 @@
           },
         }).then(response=>{
 
-          this.$message(response.data.message,"提示");
+          this.$message(response.data.message,"Tips");
         }).catch(error=>{
 
           console.log(error.response)
@@ -237,17 +237,17 @@
               }
           }).then(response=>{
             let _this = this;
-            this.$alert(response.data.message,"提示",{
+            this.$alert(response.data.message,"Tips",{
               callback(){
                 _this.$router.push(`orders/${response.data.order}`);
               }
             })
           }).catch(error=>{
             console.log(error.response);
-            this.$alert(error.response.data.message,"提示")
+            this.$alert(error.response.data.message,"Tips")
           })
         }else {
-          this.$alert("你提交的订单有误，请重新提交！","提示")
+          this.$alert("The order you submitted is wrong, please submit again!","Tips")
         }
       }
     },

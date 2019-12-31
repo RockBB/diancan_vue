@@ -3,28 +3,28 @@
 		<div class="login">
 			<div class="login_box">
 				<div class="title">
-					<span @click="login_type=0">密码登录</span>
-					<span @click="login_type=1">短信登录</span>
+					<span @click="login_type=0">Password Login</span>
+					<span @click="login_type=1">SMS Login</span>
 				</div>
 				<div class="inp" v-if="login_type==0">
-					<input v-model = "username" type="text" placeholder="用户名 / 手机号码" class="user">
-					<input v-model = "password" type="password" name="" class="pwd" placeholder="密码">
+					<input v-model = "username" type="text" placeholder="User Name/ Phone Number" class="user">
+					<input v-model = "password" type="password" name="" class="pwd" placeholder="password">
 					<div class="rember">
 						<p>
 							<input type="checkbox" class="no" v-model="remember"/>
-							<span>记住密码</span>
+							<span>Remember Password</span>
 						</p>
-						<p>忘记密码</p>
+						<p>Forget Password</p>
 					</div>
-					<button class="login_btn" @click="loginhander">登录</button>
-					<p class="go_login" >没有账号<router-link to="/register">立即注册</router-link></p>
+					<button class="login_btn" @click="loginhander">Login</button>
+					<p class="go_login" >No Account<router-link to="/register">Register</router-link></p>
 				</div>
 				<div class="inp" v-show="login_type==1">
-					<input v-model = "username" type="text" placeholder="手机号码" class="user">
-					<input v-model = "password"  type="text" class="pwd" placeholder="短信验证码">
-          <button id="get_code" class="login_btn">获取验证码</button>
-					<button class="login_btn" @click="loginhander">登录</button>
-					<p class="go_login" >没有账号 <router-link to="/register">立即注册</router-link></p>
+					<input v-model = "username" type="text" placeholder="Phone Number" class="user">
+					<input v-model = "password"  type="text" class="pwd" placeholder="Verification code">
+          <button id="get_code" class="login_btn">Get verification code</button>
+					<button class="login_btn" @click="loginhander">Login</button>
+					<p class="go_login" >No Account <router-link to="/register">Register Now</router-link></p>
 				</div>
 			</div>
 		</div>
@@ -68,7 +68,7 @@ export default {
         // console.log('5555555', data)
         // 登录成功以后,跳转会上一个页面
         let _this = this;
-        _this.$alert("登录成功!","欢迎光临",{
+        _this.$alert("Login Successed!","Welcome",{
           callback(){
             // 跳转到首页
             // _this.$router.push("/");

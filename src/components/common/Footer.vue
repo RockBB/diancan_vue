@@ -4,15 +4,15 @@
       <el-footer>
         <el-row>
 <!--          <el-col v-for="nav in nav_list" :span="3"><a :class="check(nav.link)?'current':''" :href="nav.link">{{nav.name}}</a></el-col>-->
-           <el-col :span="4"><router-link to="">关于我们</router-link></el-col>
-           <el-col :span="4"><router-link to="">联系我们</router-link></el-col>
-           <el-col :span="4"><router-link to="">商务合作</router-link></el-col>
-           <el-col :span="4"><router-link to="">帮助中心</router-link></el-col>
-           <el-col :span="4"><router-link to="">意见反馈</router-link></el-col>
-          <el-col :span="4"><router-link to="">新手指南</router-link></el-col>
+           <el-col :span="4"><router-link to="">About us</router-link></el-col>
+           <el-col :span="4"><router-link to="">Contact us</router-link></el-col>
+           <el-col :span="4"><router-link to="">Business cooperation</router-link></el-col>
+           <el-col :span="4"><router-link to="">Help center</router-link></el-col>
+           <el-col :span="4"><router-link to="">Feedback</router-link></el-col>
+          <el-col :span="4"><router-link to="">Novice guide</router-link></el-col>
         </el-row>
         <el-row>
-          <el-col :span="24">Copyright © dianc.com版权所有 | 京ICP备110120119号-1</el-col>
+          <el-col :span="24">MIT Licensed | Copyright © 2019 </el-col>
         </el-row>
       </el-footer>
     </el-container>

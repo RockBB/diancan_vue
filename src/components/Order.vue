@@ -2,13 +2,13 @@
   <div class="cart">
     <Header/>
     <div class="cart-info">
-      <h3 class="cart-top">购物车结算 <span>共1门课程</span></h3>
+      <h3 class="cart-top">Shopping cart settlement</h3>
       <div class="cart-title">
         <el-row>
           <el-col :span="2">&nbsp;</el-col>
-          <el-col :span="10">课程</el-col>
-          <el-col :span="8">有效期</el-col>
-          <el-col :span="4">价格</el-col>
+          <el-col :span="10">Food</el-col>
+          <!-- <el-col :span="8">有效期</el-col> -->
+          <el-col :span="4">Price</el-col>
         </el-row>
       </div>
       <div class="cart-item" v-for="(course, i) in order_info.order_foods" :key="i">
@@ -23,7 +23,7 @@
           </el-col>
           <el-col :span="4">
             <div class="course-price">
-              <p class="real_price">¥{{course.price}}</p>
+              <p class="real_price">${{course.price}}</p>
 <!--              <span class="original_price">原价: ¥{{course.price}}</span>-->
             </div>
           </el-col>
@@ -34,13 +34,13 @@
           <div id="accordion">
             <div class="coupon-box">
               <div class="coupon-title">
-                <span class="select-coupon">使用优惠劵：</span>
+                <span class="select-coupon">Clip coupons：</span>
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="width: 20px; height: 20px"
                    class="collapsed" aria-expanded="false">
                   <img class="sign" src="../../static/img/12.png" width="20" height="20" alt=""></a>
-                <span class="coupon-num">有0张可用</span>
+                <span class="coupon-num">No coupons</span>
               </div>
-              <p class="sum-price-wrap" style="margin-right: 45px">商品总金额：<span class="sum-price">{{order_info.total_price}}元</span>
+              <p class="sum-price-wrap" style="margin-right: 45px">Total：<span class="sum-price">{{order_info.total_price}}元</span>
               </p>
             </div>
 
@@ -52,10 +52,10 @@
 <!--              alt=""></label>-->
 <!--            <p class="discount-num" style="color:#9B9B9B">使用会员账户</p>-->
             <p class="discount-num" style="margin-right: 45px">
-              <span style="display: none;">可用0个已抵扣 ￥0</span>
+              <span style="display: none;">Available 0 deducted $0</span>
             </p>
           </div>
-          <p class="sun-coupon-num" style="margin-right: 45px;margin-bottom:43px">优惠券抵扣：<span>0元</span></p>
+          <p class="sun-coupon-num" style="margin-right: 45px;margin-bottom:43px">Coupon deduction:<span>0$</span></p>
         </div>
       </div>
       <div class="calc">
@@ -66,8 +66,8 @@
 <!--            <span class="alipay"><img src="../../static/img/alipay2.png" alt=""></span>-->
 <!--            <span class="alipay wechat"><img src="../../static/img/wechat.png" alt=""></span>-->
 <!--          </el-col>-->
-          <el-col :span="8" class="count">实付款： <span>¥{{order_info.total_price}}</span></el-col>
-          <el-col :span="4" class="cart-pay"><span @click="payhander(order_info.total_price)">会员支付</span></el-col>
+          <el-col :span="8" class="count">Actual payment: <span>¥{{order_info.total_price}}</span></el-col>
+          <el-col :span="4" class="cart-pay"><span @click="payhander(order_info.total_price)">Account payment</span></el-col>
         </el-row>
       </div>
     </div>
@@ -99,7 +99,7 @@
       let token = sessionStorage.token || localStorage.token;
       let _this = this;
       if (!token) {
-        this.$alert("对不起,您尚未登录!请登录!", "警告", {
+        this.$alert("Sorry, you haven't signed in yet! Please sign in",'Tips', {
           callback() {
             _this.$router.push("/login");
           }
@@ -161,12 +161,12 @@
           }).then(response=>{
                this.$store.commit("newmoney",response.data.money);
                let _this = this;
-               this.$confirm("是否跳转到首页",'提示').then(() => {
+               this.$confirm("Jump to home page or not?",'Tips').then(() => {
                  _this.$router.push("/home/");
                })
           }).catch(error=>{
             console.log(error.response);
-            this.$alert(error.response.data.message,"提示")
+            this.$alert(error.response.data.message,"Tips")
           })
         // // this.$confirm("您确认要跳到支付宝页面么",'提示').then(() => {
         //   let token = localStorage.token || sessionStorage.token;

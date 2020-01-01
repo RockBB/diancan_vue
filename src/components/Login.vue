@@ -17,7 +17,7 @@
 						<p>Forget Password</p>
 					</div>
 					<button class="login_btn" @click="loginhander">Login</button>
-					<p class="go_login" >No Account<router-link to="/register">Register</router-link></p>
+					<p class="go_login" >No Account<router-link to="/register"> Register</router-link></p>
 				</div>
 				<div class="inp" v-show="login_type==1">
 					<input v-model = "username" type="text" placeholder="Phone Number" class="user">

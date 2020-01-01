@@ -5,7 +5,7 @@
       <!-- 筛选功能 -->
       <ul class="condition condition1">
         <li class="cate-condition">Food Category:</li>
-        <li class="item" :class="query_params.course_category===0?'current':''" @click="query_params.course_category=0">全部</li>
+        <li class="item" :class="query_params.course_category===0?'current':''" @click="query_params.course_category=0">All</li>
         <li :class="query_params.course_category===catetory.id?'current':''"
          @click="query_params.course_category=catetory.id" v-for="(catetory, i) in catetory_list" :data-key="catetory.id" :key="i+'c'" class="item">{{catetory.name}}</li>
 
@@ -20,18 +20,22 @@
 
       <!-- 课程列表 -->
 
-      <div class="list">
-        <el-row :gutter="40" >
-        <el-col :span="6" v-for="(course,i) in course_list" :key="i+'f'"><div class="grid-content bg-purple">
-          <div class="course-title">
+      <div class="list" >
+        <el-row :gutter="50" >
+        <el-col :span="6" v-for="(course,i) in course_list" :key="i+'f'">
+          <div class="grid-content bg-purple course-item">
+            <div>
+                <div class="course-title">
                   <h3>{{course.name}}</h3>
-          </div>
-          <img :src="course.food_img" style="height: 200px; width: 255px;margin: 20px 0;">
-          <div class=".buy-inf">
-            <span class="present-price">{{course.price}}$</span>
-            <span class="add-cart" @click="cartAddHander(course.id)"><img src="@/assets/cart1.svg" alt="">Add to cart</span>
-          </div>
-        </div></el-col>
+              </div>
+              <img :src="course.food_img" style="height: 200px; width: 255px;margin: 20px 0;">
+              <div class=".buy-inf">
+                <span class="present-price">{{course.price}}$</span>
+                <span class="add-cart" @click="cartAddHander(course.id)"><img src="@/assets/cart1.svg" alt="">Add to cart</span>
+              </div>
+            </div>
+         </div>
+        </el-col>
       </el-row>
 
 <!--        <ul>-->
@@ -58,7 +62,7 @@
       <div class="pagination">
 
         <el-pagination @current-change="handleCurrentChange" :current-page="query_params.current_page"
-          background layout="prev, pager, next" page-size="12" :total="course_count">
+          background layout="prev, pager, next" :page-size="12" :total="course_count">
 <!--          background layout="prev, pager, next" :page-size="course_page_size" :total="course_count">-->
         </el-pagination>
       </div>
@@ -278,14 +282,11 @@
 
   .course-item {
     background: #fff;
-    padding: 20px 30px 20px 20px;
+    padding: 20px 5px 20px 5px;
+    width: 260px;
     margin-bottom: 35px;
     border-radius: 2px;
-    cursor: pointer;
     box-shadow: 2px 3px 16px rgba(0, 0, 0, .1);
-    transition: all .2s ease;
-    overflow: hidden;
-    cursor: pointer;
   }
 
   .course-cover {

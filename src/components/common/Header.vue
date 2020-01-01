@@ -79,8 +79,11 @@
       })
     },
     mounted(){
-      this.getCartCount();
-      this.getMoney();
+      if (this.token) {
+        this.getCartCount();
+        this.getMoney();
+      }
+
     },
     methods:{
       check(link){
@@ -236,7 +239,7 @@
   }
 
   .cart-ico {
-    width: 88px;
+    width: 150px;
     height: 28px;
     margin-right: 20px;
     background: #f7f7f7;
@@ -250,7 +253,7 @@
   }
 
   .cart-ico b {
-    width: 16px;
+    width: 25px;
     height: 16px;
     line-height: 17px;
     font-size: 12px;

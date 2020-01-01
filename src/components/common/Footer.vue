@@ -12,7 +12,7 @@
           <el-col :span="4"><router-link to="">Novice guide</router-link></el-col>
         </el-row>
         <el-row>
-          <el-col :span="24">MIT Licensed | Copyright © 2019 </el-col>
+          <el-col :span="24" style="margin-top: 20px">MIT Licensed | Copyright © 2019 </el-col>
         </el-row>
       </el-footer>
     </el-container>

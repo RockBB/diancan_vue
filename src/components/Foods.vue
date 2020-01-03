@@ -151,6 +151,7 @@
         this.course_list = response.data.results;
         // 课程总数量
         this.course_count = response.data.count;
+        console.log(this.course_list)
 
       }).catch(error=>{
         console.log(error.response)

@@ -20,7 +20,7 @@
               </router-link>
             </div>
 
-            <div class="study">Account Money：{{money}}ft</div>
+            <div class="study">Account Money：{{money}} ft</div>
             <div class="member">
               <el-dropdown>
                   <span class="el-dropdown-link"><router-link to=""><img src="@/assets/people.svg" alt=""></router-link></span>

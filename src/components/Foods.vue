@@ -30,7 +30,7 @@
               </div>
               <img :src="course.food_img" style="height: 200px; width: 255px;margin: 20px 0;">
               <div class=".buy-inf">
-                <span class="present-price">{{course.price}}$</span>
+                <span class="present-price">{{course.price}} ft</span>
                 <span class="add-cart" @click="cartAddHander(course.id)"><img src="@/assets/cart1.svg" alt="">Add to cart</span>
               </div>
             </div>

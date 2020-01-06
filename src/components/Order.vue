@@ -40,7 +40,7 @@
                   <img class="sign" src="../../static/img/12.png" width="20" height="20" alt=""></a>
                 <span class="coupon-num">No coupons</span>
               </div>
-              <p class="sum-price-wrap" style="margin-right: 45px">Total：<span class="sum-price">{{order_info.total_price}}元</span>
+              <p class="sum-price-wrap" style="margin-right: 45px">Total：<span class="sum-price">{{order_info.total_price}} ft</span>
               </p>
             </div>
 
@@ -52,10 +52,10 @@
 <!--              alt=""></label>-->
 <!--            <p class="discount-num" style="color:#9B9B9B">使用会员账户</p>-->
             <p class="discount-num" style="margin-right: 45px">
-              <span style="display: none;">Available 0 deducted $0</span>
+              <span style="display: none;">Available 0 deducted ft0</span>
             </p>
           </div>
-          <p class="sun-coupon-num" style="margin-right: 45px;margin-bottom:43px">Coupon deduction:<span>0$</span></p>
+          <p class="sun-coupon-num" style="margin-right: 45px;margin-bottom:43px">Coupon deduction:<span>0 ft</span></p>
         </div>
       </div>
       <div class="calc">
@@ -66,7 +66,7 @@
 <!--            <span class="alipay"><img src="../../static/img/alipay2.png" alt=""></span>-->
 <!--            <span class="alipay wechat"><img src="../../static/img/wechat.png" alt=""></span>-->
 <!--          </el-col>-->
-          <el-col :span="8" class="count">Actual payment: <span>¥{{order_info.total_price}}</span></el-col>
+          <el-col :span="8" class="count">Actual payment: <span>ft {{order_info.total_price}}</span></el-col>
           <el-col :span="4" class="cart-pay"><span @click="payhander(order_info.total_price)">Account payment</span></el-col>
         </el-row>
       </div>

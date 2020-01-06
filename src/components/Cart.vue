@@ -20,7 +20,7 @@
           </el-table-column>
 
           <el-table-column label="Price" width="162">  <!-- 单价 -->
-            <template slot-scope="scope"> ¥{{ scope.row.price.toFixed(2) }}</template>
+            <template slot-scope="scope"> ft {{ scope.row.price.toFixed(2) }}</template>
           </el-table-column>
           <el-table-column label=" operation" width="162">  <!-- 操作 -->
             <template slot-scope="scope">
@@ -34,7 +34,7 @@
       <div class="cart-bottom">
 
         <div class="cart-bottom-right">
-          <span class="total">total：$<span>{{total_price}}</span></span>
+          <span class="total">total：ft <span>{{total_price}}</span></span>
           <span  v-if="courseData.length">
             <span class="go-pay" @click="gotopay">go pay</span>
           </span>

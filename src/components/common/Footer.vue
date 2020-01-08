@@ -3,7 +3,6 @@
     <el-container>
       <el-footer>
         <el-row>
-<!--          <el-col v-for="nav in nav_list" :span="3"><a :class="check(nav.link)?'current':''" :href="nav.link">{{nav.name}}</a></el-col>-->
            <el-col :span="4"><router-link to="">About us</router-link></el-col>
            <el-col :span="4"><router-link to="">Contact us</router-link></el-col>
            <el-col :span="4"><router-link to="">Business cooperation</router-link></el-col>
@@ -28,20 +27,7 @@
         nav_list:[],
       }
     },
-    // created() {
-    //   // 获取导航
-    //   this.$axios.get(this.$settings.Host+"/footer/").then(response=>{
-    //     this.nav_list = response.data;
-    //     //console.log(this.nav_list)
-    //   }).catch(error=>{
-    //     console.log(error.response)
-    //   })
-    // },
-    // methods:{
-    //   check(link){
-    //       return link===window.location.pathname;
-    //   }
-    // }
+
   }
 </script>
 

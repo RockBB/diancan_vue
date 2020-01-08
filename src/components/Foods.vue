@@ -2,7 +2,6 @@
   <div class="courses">
     <Header/>
     <div class="main">
-      <!-- 筛选功能 -->
       <ul class="condition condition1">
         <li class="cate-condition">Food Category:</li>
         <li class="item" :class="query_params.course_category===0?'current':''" @click="query_params.course_category=0">All</li>
@@ -13,12 +12,10 @@
       <ul class="condition condition2">
         <li class="cate-condition">Filter:</li>
           <li class="item" :class="(query_params.ordering==='-id' || query_params.ordering==='id')?'current':''" @click="select_ordering('id')">Default</li>
-<!--          <li class="item" :class="(query_params.ordering==='-students' || query_params.ordering==='students')?'current':''" @click="select_ordering('students')">人气</li>-->
           <li class="item" :class="query_params.ordering==='price'?'current price':(query_params.ordering==='-price'?'current price2':'')" @click="select_ordering('price')">Price</li>
         <li class="course-length"></li>
       </ul>
 
-      <!-- 课程列表 -->
 
       <div class="list" >
         <el-row :gutter="50" >
@@ -38,32 +35,12 @@
         </el-col>
       </el-row>
 
-<!--        <ul>-->
-<!--          <div class="course-link" v-for="course in course_list" >-->
-<!--            <li class="course-item">-->
 
-<!--              <div class="course-info">-->
-<!--                <div class="course-title" >-->
-<!--                  <h3>{{course.name}}</h3>-->
-<!--                </div>-->
-<!--              <div class="course-cover" >-->
-<!--                <img :src="course.food_img" style="height: 220px; width: 350px">-->
-<!--              </div>-->
-<!--                <div class="buy-info">-->
-<!--                  <span class="present-price">￥{{course.price}}元</span>-->
-<!--                  <div class="add-cart" @click="cartAddHander(course.id)"><img src="@/assets/cart1.svg" alt="">加入购物车</div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </li>-->
-<!--          </div>-->
-<!--        </ul>-->
       </div>
-      <!--      分页-->
       <div class="pagination">
 
         <el-pagination @current-change="handleCurrentChange" :current-page="query_params.current_page"
           background layout="prev, pager, next" :page-size="12" :total="course_count">
-<!--          background layout="prev, pager, next" :page-size="course_page_size" :total="course_count">-->
         </el-pagination>
       </div>
     </div>
@@ -95,14 +72,11 @@
     },
 
      watch:{
-    // 每次点击不同课程时,要重新获取课程列表
     "query_params.course_category":function(){
        this.get_course_list();
-       // 当切换分类的时候,重置页码
        this.query_params.current_page = 1;
     },
     "query_params.ordering":function(){
-       // 当切换排序条件的时候,重置页码
        // this.query_params.current_page = 1;
        this.get_course_list();
     },
@@ -113,21 +87,17 @@
     components: {Header, Footer},
 
   created(){
-    // 获取课程分类
     this.$axios.get(this.$settings.Host+"/foods/cate/").then(response=>{
       this.catetory_list = response.data
-      // console.log('course555555', this.catetory_list)
     }).catch(error=>{
       console.log(error.response)
     });
 
-    // 获取课程信息
     this.get_course_list()
 
   },
   methods:{
     select_ordering(selector){
-      // 默认排序
       if(this.query_params.ordering===('-'+selector) ){
         this.query_params.ordering = selector;
       }else{
@@ -147,9 +117,7 @@
       this.$axios.get(this.$settings.Host+"/foods/list/",{
         params: query_params
       }).then(response=>{
-        // 课程列表
         this.course_list = response.data.results;
-        // 课程总数量
         this.course_count = response.data.count;
         console.log(this.course_list)
 
@@ -158,10 +126,8 @@
       });
     },
     handleCurrentChange(page){
-      // 页码发生改变
       this.query_params.current_page = page;
     },
-       // 添加商品课程到购物车
       cartAddHander(id){
         // 1. 判断用户是否已经登录了.
         if(!this.token){
@@ -319,7 +285,7 @@
     font-size: 14px;
     color: #9b9b9b;
     margin-top: 12px;
-    text-indent: 1em; /* 缩进 2字符宽度 */
+    text-indent: 1em; 
     background: url("../assets/people.svg") no-repeat 0 3px;
   }
 
@@ -358,14 +324,13 @@
   .lesson-list li .lesson-title {
     display: inline-block;
     max-width: 227px;
-    text-overflow: ellipsis; /* 如果字体太多超出元素的宽度，则添加省略符号 */
+    text-overflow: ellipsis; 
     color: #666;
     overflow: hidden;
     white-space: nowrap;
     font-size: 14px;
-    vertical-align: text-bottom; /* 文本的垂直对齐方式： text-botton 文本底部对齐 */
+    vertical-align: text-bottom; 
     text-indent: 1.5em;
-    /*background: url(../../static/player.svg) no-repeat 0 3px;*/
   }
 
   .lesson-list .free {
@@ -382,7 +347,6 @@
 
   .lesson-list li:hover .lesson-title {
     color: #ffc210;
-    /*background-image: url(../../static/player2.svg);*/
   }
 
   .lesson-list li:hover .free {
@@ -436,7 +400,7 @@
     font-size: 16px;
     border: 1px solid #fd7b4d;
     border-radius: 3px;
-    transition: all .2s ease-in-out; /* 过渡动画 */
+    transition: all .2s ease-in-out; 
     float: right;
     margin-top: 5px;
   }
@@ -474,21 +438,12 @@
   .el-col {
     border-radius: 4px;
   }
-  /*.bg-purple-dark {*/
-  /*  background: #99a9bf;*/
-  /*}*/
-  /*.bg-purple {*/
-  /*  background: #d3dce6;*/
-  /*}*/
-  /*.bg-purple-light {*/
-  /*  background: #e5e9f2;*/
-  /*}*/
+
   .grid-content {
     border-radius: 4px;
     min-height: 36px;
   }
   .row-bg {
     padding: 10px 0;
-    /*background-color: #f9fafc;*/
   }
 </style>

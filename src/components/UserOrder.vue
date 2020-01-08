@@ -19,7 +19,6 @@
           <div class="user-data">
             <ul class="nav">
               <li class="order-info">Oredr</li>
-<!--              <li class="course-expire">有效期</li>-->
               <li class="course-price">Food Price</li>
               <li class="real-price">Actual amount paid</li>
               <li class="order-status">Trading status</li>
@@ -40,15 +39,12 @@
                     <img :src="$settings.Host+course.food_img" alt="">
                     <div class="order-info-title">
                       <p class="course-title">{{course.food_name}}</p>
-<!--                      <p v-if="course.discount_name" class="price-service">{{course.discount_name}}</p>-->
                     </div>
                 </li>
-<!--                <li class="course-expire">{{// course.expire_text}}</li>-->
                 <li class="course-price">{{course.price}}</li>
                 <li class="real-price">{{course.real_price}}</li>
                 <li class="order-status">{{order.order_status_text}}</li>
                 <li class="order-do">
-<!--                  <router-link v-if="order.order_status==1" :to="'/detail?id='+course.food" class="btn btn2">去学习</router-link>-->
                   <router-link v-if="order.order_status==0" :to="'/orders/'+order.order_number" class="btn btn2">Go Pay</router-link>
                 </li>
               </ul>
@@ -84,7 +80,6 @@
 
         this.$axios.get(this.$settings.Host+`/users/${user_id}/orders/`,{
           headers:{
-            // 注意下方的空格!!!
             "Authorization":"jwt " + token,
           },
         }).then(response=>{

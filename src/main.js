@@ -3,11 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router/index';
-// elementUI 导入
+// elementUI 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/en'
-// 调用插件
 //Vue.use(ElementUI);
 Vue.use(ElementUI, { locale });
 
@@ -15,7 +14,6 @@ import axios from 'axios'
 axios.defaults.withCredentials = true;
 Vue.prototype.$axios = axios;
 
-// 手动的自定义全局配置
 import settings from "./settings"
 Vue.prototype.$settings = settings;
 

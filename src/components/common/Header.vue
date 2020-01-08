@@ -13,7 +13,6 @@
           <el-col v-if="token" class="login-bar" :span="5">
             <div class="cart-ico">
               <router-link to="/cart">
-<!--              <b>{{$store.state.cart.count}}</b>-->
              <b>{{count}}</b>
               <img src="@/assets/cart.svg" alt="">
               <span>Shopping Cart</span>
@@ -25,12 +24,11 @@
               <el-dropdown>
                   <span class="el-dropdown-link"><router-link to=""><img src="@/assets/people.svg" alt=""></router-link></span>
                 <el-dropdown-menu slot="dropdown">
-<!--                  我的账户-->
                   <el-dropdown-item><router-link to="/my">My Account</router-link>
                   </el-dropdown-item>
-                  <el-dropdown-item><router-link to="/my/order">My Orders</router-link> </el-dropdown-item>   <!-- 我的订单-->
-                  <el-dropdown-item>My Coupon </el-dropdown-item>   <!-- 我的优惠卷-->
-                  <el-dropdown-item><span  @click="logout()">Logout</span> </el-dropdown-item>  <!-- 退出登录-->
+                  <el-dropdown-item><router-link to="/my/order">My Orders</router-link> </el-dropdown-item>   
+                  <el-dropdown-item>My Coupon </el-dropdown-item>   
+                  <el-dropdown-item><span  @click="logout()">Logout</span> </el-dropdown-item>  
                 </el-dropdown-menu>
               </el-dropdown>
             </div>
@@ -61,7 +59,6 @@
     props:[],
     data() {
       return {
-        // 设置一个登录标识，表示是否登录
         token: sessionStorage.token || localStorage.token,
         user_name: sessionStorage.user_name || localStorage.user_name,
         user_id: sessionStorage.user_id || localStorage.user_id,
@@ -70,10 +67,8 @@
     },
     created() {
 
-      // 获取导航
       this.$axios.get(this.$settings.Host+"/nav/").then(response=>{
         this.nav_list = response.data;
-        // console.log(this.nav_list)
       }).catch(error=>{
         console.log(error.response)
       })
@@ -116,36 +111,24 @@
         }).then(() => {
           localStorage.clear();
           sessionStorage.clear();
-          // location.reload();
           location.href = "/";
-          // _this.$router.push("/");
-          // this.$message({
-          //   type: 'success',
-          //   message: '已退出登录!'
-          // });
+
         }).catch(() => {
-          // this.$message({
-          //   type: 'info',
-          //   message: '取消退出登录'
-          // });
+
         });
       },
       getCartCount(){
-        // 获取购物车商品数据
         this.$axios.get(this.$settings.Host+"/carts/foods/",{
           headers:{
-            // 注意下方的空格!!!
             "Authorization":"jwt " + this.token
           }
         }).then(response=>{
-          // 更新在vuex里面的数据
           this.$store.commit("addcart",response.data.length);
         })
       },
       getMoney(){
         this.$axios.get(this.$settings.Host+"/users/money/",{
               headers:{
-                // 注意:jwt后面必须有且只有一个空格!!!!
                 "Authorization":"jwt " + this.token
               }
           }).then(response=>{
@@ -177,14 +160,7 @@
 
       }
     },
-    // watch:{
-    //   money(newvalue, oldvalue){
-    //     this.money = newvalue ? newvalue : oldvalue;
-    //   },
-    //   count(newvalue, oldvalue){
-    //     this.count = newvalue ? newvalue : oldvalue;
-    //   },
-    // }
+
   }
 </script>
 
@@ -221,7 +197,7 @@
   }
 
   .logo img {
-    vertical-align: middle; /* 设置图片垂直居中 */
+    vertical-align: middle; /*  */
   }
 
   .nav, .study {

@@ -7,10 +7,7 @@
 					<input v-model = "mobile" type="text" placeholder="Phone number" class="user">
 					<input v-model = "password" type="password" placeholder="password" class="user">
 					<input v-model = "password2" type="password" placeholder="password" class="user">
-<!--					<div class="sms-box">-->
-<!--            <input v-model = "sms" type="text" placeholder="输入验证码" class="user">-->
-<!--            <div class="sms-btn" @click="">{{sms_text}}</div>-->
-<!--          </div>-->
+
 
 					<button class="register_btn" @click="registerHander">Register</button>
 					<p class="go_login" >Existing accounts <router-link to="/login">Login</router-link></p>
@@ -30,71 +27,30 @@ export default {
         password:"",
         password2:"",
         is_geek:false,
-        is_send: false,    // 是否已经发送短信的状态
-        send_intervel:60, //  发送短信的间隔
-        sms_text:"点击发送短信", // 发送短信的提示
+        is_send: false,    
+        send_intervel:60, 
     }
   },
 
   methods:{
 
-    // smsHandle() {
-    //   // 判断是否填写了手机
-    //   if( !/^\d{11}$/.test(this.mobile) ){
-    //     this.$alert('手机号码格式有误!', '警告');
-    //     return false;
-    //   }
-    //
-    //   let _this = this;
-    //
-    //   _this.$axios.get(_this.$settings.Host+`/users/sms/${_this.mobile}/`).then(response=>{
-    //     let data = response.data;
-    //     if( data.result == '-1' ){
-    //       _this.$alert("发送短信失败!","错误");
-    //     }else{
-    //       _this.is_send = true;
-    //       _this.$alert("发送短信成功了!","成功",{
-    //         callback(){
-    //           let num = _this.send_intervel
-    //           let timer = setInterval(()=>{
-    //             if(num<1){
-    //               clearInterval(timer);
-    //               _this.sms_text = "点击发送短信";
-    //               _this.is_send = false;
-    //             }else{
-    //               num--;
-    //               _this.sms_text = num+"后可继续点击发送";
-    //             }
-    //           },1000)
-    //         }
-    //       });
-    //     }
-    //   }).catch(error=>{
-    //       console.log(error.response)
-    //   })
-    //
-    // },
-    // 提交注册信息
+
     registerHander(){
-      // 验证手机号码
       if( !/^\d{11}$/.test(this.mobile) ){
         this.$alert('Wrong format of mobile number!', 'Warn');
         return false;
       }
 
-      // 密码长度
       if( !/^.{6,16}$/.test(this.password) ){
         this.$alert('Password length must be between 6-16 characters!', 'Warn');
         return false;
       }
 
-      // 密码和确认密码
       if( this.password !== this.password2 ){
         this.$alert('Confirm password must be consistent with password!', 'Warn');
         return false;
       }
 
-      // 发送请求注册用户
       this.$axios.post(this.$settings.Host+"/users/register/",{
         mobile:this.mobile,
         password:this.password,
@@ -106,12 +62,10 @@ export default {
           callback(){
             let data = response.data;
             console.log(data);
-            // 保存登录状态
             sessionStorage.token = data.token;
             sessionStorage.user_id = data.id;
             sessionStorage.user_name = data.username;
 
-            // 跳转到首页
             _this.$router.push("/");
           }
         });

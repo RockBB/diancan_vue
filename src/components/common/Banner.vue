@@ -17,7 +17,6 @@
       };
     },
     created() {
-      // 获取轮播图数据
       this.$axios.get(this.$settings.Host+"/banner/").then(response=>{
         this.banner_list = response.data;
         // console.log(response.data);

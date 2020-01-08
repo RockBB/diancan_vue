@@ -3,14 +3,13 @@
     <Header/>
     <div class="main">
       <div class="cart-title">
-        <h3>My shopping cart <span> </span></h3> <!-- 我的购物车 -->
+        <h3>My shopping cart <span> </span></h3> 
       </div>
       <div class="cart-info">
                 <el-table ref="multipleTable" :data="courseData" style="width:100%"
                             @select="currentSelected" @selection-change="SelectionChange">
-<!--        <el-table ref="selectAllTable" :data="courseData" style="width:100%">-->
           <el-table-column type="selection" label="" width="87"></el-table-column>
-          <el-table-column label="Foods" width="540"> <!-- 菜品 -->
+          <el-table-column label="Foods" width="540"> 
             <template slot-scope="scope">
               <div class="course-box">
                 <img :src="$settings.Host + scope.row.food_img" alt="">
@@ -19,12 +18,11 @@
             </template>
           </el-table-column>
 
-          <el-table-column label="Price" width="162">  <!-- 单价 -->
+          <el-table-column label="Price" width="162">  
             <template slot-scope="scope"> ft {{ scope.row.price.toFixed(2) }}</template>
           </el-table-column>
-          <el-table-column label=" operation" width="162">  <!-- 操作 -->
+          <el-table-column label=" operation" width="162">  
             <template slot-scope="scope">
-<!--              <span ref="CartDel" @click="CartDel(scope.row,scope.row.name)">删除</span>-->
               <el-button ref="CartDel" type="danger" size="mini" class="el-icon-delete" @click="CartDel(scope.row,scope.row.name)">Delete</el-button>
             </template>
           </el-table-column>
@@ -65,23 +63,23 @@
           {title: "永久有效", id: -1},
         ],
         courseData: [],
-        selection:[],  // 购物车中被勾选的商品信息
+        selection:[],  
         total_price:0.00,
       }
     },
     components: {Header, Footer},
     watch:{
       selection(){
-        // 当课程勾选状态发生变化时核算价格
+        
         this.getTotalPrice();
       },
       courseData(){
-        // 当课程数量发生变化时核算价格
+        
         this.getTotalPrice();
       },
     },
     created(){
-      // 判断是否登录
+      
       this.token = sessionStorage.token || localStorage.token;
       if( !this.token ){
         this.$confirm("Sorry, you haven't signed in yet! Please sign in",'Tips').then(() => {
@@ -90,24 +88,21 @@
           this.$router.go(-1);
         });
       }else{
-        // 获取购物车商品数据
+        
         this.$axios.get(this.$settings.Host+"/carts/foods/",{
           headers:{
-            // 注意下方的空格!!!
+            
             "Authorization":"jwt " + this.token
           }
         }).then(response=>{
 
           this.courseData = response.data;
-          // 更新在vuex里面的数据
+          
           this.$store.state.cart.count = response.data.length;
 
-          // 调整因为ajax数据请求导致勾选状态人没有出现的原因,使用定时器进行延时调用
           setTimeout(()=>{
 
-            // row 就是字典数据[json]
             this.courseData.forEach(row => {
-              // 设置商品课程的选中状态
               if(row.is_select){
                 this.$refs.multipleTable.toggleRowSelection(row);
               }
@@ -136,38 +131,32 @@
       SelectAll(rows) {
         if (rows) {
           rows.forEach(row => {
-            // this.$refs.selectAllTable.toggleAllSelection(row);
             this.$refs.multipleTable.toggleAllSelection(row);
           });
         }
       },
       getTotalPrice(){
-        // 核算购物车中所有勾选商品的总价格
         let total = 0;
         this.selection.forEach(row=>{
           total += row.price;
         });
-        // 保留2个小数位
         this.total_price = total.toFixed(2);
       },
       CartDel:function(course,course_name){
         console.log(course, course_name);
         this.$confirm(`Are you sure delete this ${course_name}`,"Tips").then(()=>{
           let food_id = course.id;
-          // 发送请求
           this.$axios.delete(this.$settings.Host+"/carts/foods/",{
             params:{
               food_id:food_id,
             },
             headers:{
-              // 注意下方的空格!!!
               "Authorization":"jwt " + this.token
             },
           }).then(response=>{
 
             let index = this.courseData.indexOf(course);
             this.courseData.splice(index,1);
-            // console.log(this.courseData);
             this.$message("Delete successful!");
             this.getCartCount();
 
@@ -176,29 +165,21 @@
           });
 
         }).catch(()=>{
-          // 取消操作
 
         });
       },
       currentSelected(selection,row){
-        // selection 表示所有被勾选的信息
-        // row 当前操作的数据
         let is_select = true;
         if( selection.indexOf(row) == -1 ){
           is_select = false;
         }
 
-        // 获取当前课程ID
         let course_id = row.id;
-        // 切换勾选状态
-
-        // 发送请求
         this.$axios.put(this.$settings.Host+"/carts/foods/",{
           food_id: course_id,
           is_select: is_select,
         },{
           headers:{
-            // 注意下方的空格!!!
             "Authorization":"jwt " + this.token
           },
         }).then(response=>{
@@ -209,30 +190,23 @@
           console.log(error.response)
         })
       },
-      // 更新课程的有效期
       getCartCount(){
-        // 获取购物车商品数据
         this.$axios.get(this.$settings.Host+"/carts/foods/",{
           headers:{
-            // 注意下方的空格!!!
             "Authorization":"jwt " + this.token
           }
         }).then(response=>{
-          // 更新在vuex里面的数据
           this.$store.commit("addcart",response.data.length);
         })
       },
-      // 获取勾选过的商品课程列表
       SelectionChange(data){
         this.selection = data;
       },
       gotopay(){
         if (this.courseData.length){
           console.log(this.courseData);
-          // 提交结算,生成订单
           this.$axios.post(this.$settings.Host+"/orders/",{},{
               headers:{
-                // 注意:jwt后面必须有且只有一个空格!!!!
                 "Authorization":"jwt " + this.token
               }
           }).then(response=>{
@@ -259,7 +233,7 @@
   .main {
     width: 1200px;
     margin: 80px auto;
-    overflow: hidden; /* 解决body元素和标题之间的上下外边距的塌陷问题 */
+    overflow: hidden; 
 
   }
 
@@ -312,7 +286,7 @@
 
   .cart-bottom-right {
     float: right;
-    text-align: right; /* 文本右对齐 */
+    text-align: right;
   }
 
   .total {

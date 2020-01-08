@@ -7,7 +7,6 @@
         <el-row>
           <el-col :span="2">&nbsp;</el-col>
           <el-col :span="10">Food</el-col>
-          <!-- <el-col :span="8">有效期</el-col> -->
           <el-col :span="4">Price</el-col>
         </el-row>
       </div>
@@ -24,7 +23,6 @@
           <el-col :span="4">
             <div class="course-price">
               <p class="real_price">${{course.price}}</p>
-<!--              <span class="original_price">原价: ¥{{course.price}}</span>-->
             </div>
           </el-col>
         </el-row>
@@ -46,11 +44,7 @@
 
           </div>
           <div style="height: 30px; margin-top: 40px; display: flex; align-items: center; justify-content: flex-end">
-<!--            <input type="checkbox" class="ok" id="color-input-red">-->
-<!--            <label for="color-input-red"><img-->
-<!--              src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTFweCIgaGVpZ2h0PSI5cHgiIHZpZXdCb3g9IjAgMCAxMSA5IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCA0OS4zICg1MTE2NykgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+5Yu+6YCJPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9IumAgumFjU3pobUyIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0i5o+Q5Lqk6K6i5Y2VIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzM4LjAwMDAwMCwgLTQyMi4wMDAwMDApIiBmaWxsPSIjRkZGRkZGIj4KICAgICAgICAgICAgPGcgaWQ9IkNoZWNrYm94LUNvcHkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMi4wMDAwMDAsIDQxNC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0xMC4wNzc0NjQ3LDEwLjgyMTM3MSBMMTUuMzYwNDQ5NCwxNi4xMDQzNTU3IEMxNS41NTU1OTAyLDE2LjI5OTQ5NjUgMTUuNTU2NDcwOCwxNi42MTUwMDE2IDE1LjM1NTgxMDIsMTYuODE1NjYyMSBMMTQuOTQwMzg1LDE3LjIzMTA4NzQgQzE0Ljc0MjY4MjEsMTcuNDI4NzkwMyAxNC40Mjg3Nzc4LDE3LjQzNTQyNTggMTQuMjI5MDc4NSwxNy4yMzU3MjY1IEw4LjE4NzExODU4LDExLjE5Mzc2NjYgQzguMDc5MzUwNDgsMTEuMDg1OTk4NSA4LjAzMDgyOTYyLDEwLjk0MTUyMDYgOC4wNDI3ODIzNCwxMC43OTk5NDk3IEM4LjA0MjQ1NjUsMTAuNjcyNTEyOSA4LjA4OTMwMDA2LDEwLjU0Njc5MzkgOC4xODE0NjU5OCwxMC40NTQ2MjggTDExLjI1MzU2ODcsNy4zODI1MjUzMyBDMTEuNDQ1NTg3Niw3LjE5MDUwNjM3IDExLjc1ODU2Miw3LjE5MjE1NjUyIDExLjk1OTIyMjYsNy4zOTI4MTcwNiBMMTIuMzc0NjQ3OCw3LjgwODI0MjI5IEMxMi41NzIzNTA3LDguMDA1OTQ1MjEgMTIuNTcwNzM3Myw4LjMyODA5ODM1IDEyLjM4NDkzOTUsOC41MTM4OTYxOCBMMTAuMDc3NDY0NywxMC44MjEzNzEgWiIgaWQ9IuWLvumAiSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTEuNzczNzg0LCAxMi4zMTE0MjMpIHJvdGF0ZSgtOTAuMDAwMDAwKSB0cmFuc2xhdGUoLTExLjc3Mzc4NCwgLTEyLjMxMTQyMykgIj48L3BhdGg+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="-->
-<!--              alt=""></label>-->
-<!--            <p class="discount-num" style="color:#9B9B9B">使用会员账户</p>-->
+
             <p class="discount-num" style="margin-right: 45px">
               <span style="display: none;">Available 0 deducted ft0</span>
             </p>
@@ -60,12 +54,7 @@
       </div>
       <div class="calc">
         <el-row class="pay-row">
-<!--          <el-col :span="4" class="pay-col"><span class="pay-text">支付方式：</span></el-col>-->
-<!--          <el-col :span="8">-->
-<!--            <span class="alipay">会员支付</span>-->
-<!--            <span class="alipay"><img src="../../static/img/alipay2.png" alt=""></span>-->
-<!--            <span class="alipay wechat"><img src="../../static/img/wechat.png" alt=""></span>-->
-<!--          </el-col>-->
+
           <el-col :span="8" class="count">Actual payment: <span>ft {{order_info.total_price}}</span></el-col>
           <el-col :span="4" class="cart-pay"><span @click="payhander(order_info.total_price)">Account payment</span></el-col>
         </el-row>
@@ -84,8 +73,8 @@
     data() {
       return {
         order_info: {},
-        coupon_list: [], // 用于展示优惠券列表
-        coupon_list2: [],// 用于勾选优惠券功能
+        coupon_list: [], 
+        coupon_list2: [],
       }
     },
     components: {
@@ -95,7 +84,6 @@
     watch: {
     },
     created() {
-      // 判断用户是否已经登录
       let token = sessionStorage.token || localStorage.token;
       let _this = this;
       if (!token) {
@@ -105,13 +93,10 @@
           }
         })
       }
-      // 获取地址栏上面的订单号
       let order_number = this.$route.params.order;
 
-      // 发送请求获取数据
       this.$axios.get(this.$settings.Host + `/orders/${order_number}/`, {
         headers: {
-          // 注意下方的空格!!!
           "Authorization": "jwt " + token,
         },
       }).then(response => {
@@ -120,33 +105,9 @@
         console.log(error.response);
       });
 
-      // 获取用户的优惠券
     },
     methods: {
-      // get_coupon_list() {
-      //   let user_id = localStorage.user_id || sessionStorage.user_id;
-      //   let token = localStorage.token || sessionStorage.token;
-      //   // 获取当前用户的优惠券
-      //   this.$axios.get(this.$settings.Host + "/coupon/list/", {
-      //     params: {
-      //       user_id,
-      //     },
-      //     headers: {
-      //       // 注意下方的空格!!!
-      //       "Authorization": "jwt " + token,
-      //     },
-      //   }).then(response => {
-      //     // 调整获取到优惠券列表,以优惠券ID作为下标
-      //     let data_list = [];
-      //     response.data.forEach(row => {
-      //       data_list[row.id] = row;
-      //     });
-      //     this.coupon_list2 = data_list;
-      //     this.coupon_list = response.data;
-      //   }).catch(error => {
-      //     console.log(error.response);
-      //   })
-      // },
+
       payhander(money) {
         let token = localStorage.token || sessionStorage.token;
         let order_number = this.$route.params.order;
@@ -155,41 +116,19 @@
           order_number: order_number,
         },{
               headers:{
-                // 注意:jwt后面必须有且只有一个空格!!!!
                 "Authorization":"jwt " + token
               }
           }).then(response=>{
                this.$store.commit("newmoney",response.data.money);
                let _this = this;
-               this.$confirm("Jump to home page or not?",'Tips').then(() => {
+               this.$confirm("Successful payment！Jump to home page or not?",'Tips').then(() => {
                  _this.$router.push("/home/");
                })
           }).catch(error=>{
             console.log(error.response);
             this.$alert(error.response.data.message,"Tips")
           })
-        // // this.$confirm("您确认要跳到支付宝页面么",'提示').then(() => {
-        //   let token = localStorage.token || sessionStorage.token;
-        //   let user_id = localStorage.user_id || sessionStorage.user_id;
-        //   console.log('token555', user_id)
-        //   let order_number = this.$route.params.order;
-        //   // 获取当前用户的优惠券
-        // this.$axios.post(this.$settings.Host+`/users/money/`,{
-        //   // money:money,
-        //   // order_number: order_number,
-        // },{headers:{"Authorization":"jwt " + this.token}})
-        //
-        //
-        //   .then(response => {
-        //     this.$store.state.user.money = data.money;
-        //     // let url = response.data.url;
-        //     // location.assign(url);
-        //   }).catch(error => {
-        //     console.log(error.response);
-        //   });
-        // // }).catch(()=>{
-        // //
-        // // });
+
 
       },
 

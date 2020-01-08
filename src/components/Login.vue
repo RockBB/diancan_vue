@@ -44,34 +44,26 @@ export default {
   },
 
   methods:{
-    // 用户登录
     loginhander(){
       this.$axios.post(this.$settings.Host+"/users/login/",{
         username:this.username,
         password:this.password,
       }).then(response=>{
         let data = response.data;
-        // 根据用户是否勾选了记住密码来保存用户认证信息
         if(this.remember){
-          // 记住密码
           localStorage.token = data.token;
           localStorage.user_id = data.id;
           localStorage.user_name = data.username;
 
         }else{
-          // 不需要记住密码
           sessionStorage.token = data.token;
           sessionStorage.user_id = data.id;
           sessionStorage.user_name = data.username;
         }
         this.$store.state.user.money = data.money;
-        // console.log('5555555', data)
-        // 登录成功以后,跳转会上一个页面
         let _this = this;
         _this.$alert("Login Successed!","Welcome",{
           callback(){
-            // 跳转到首页
-            // _this.$router.push("/");
             _this.$router.go(-1);
           }
         });
@@ -191,8 +183,6 @@ export default {
     display: inline-block;
     font-size: 12px;
     width: 100px;
-  /*position: absolute;*/
-/*left: 20px;*/
 
 }
 #geetest{
